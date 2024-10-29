@@ -1,0 +1,30 @@
+<div class="container">
+  <header>
+    <h1 style="font-size: 48px;"> Serenade</h1>
+    <h2> A library of film composers. </h2>
+    <h2> And a place to find your favorite film composers. </h2>
+    <nav>
+      <a routerLink="/">Home</a> |
+
+      <!-- Show these links only if the user is logged in -->
+      <ng-container *ngIf="user; else loggedOut">
+        <a routerLink="/favorites">My Favorites</a> |
+        <a (click)="signOut()">Sign Out</a>
+      </ng-container>
+
+      <!-- Show these links only if the user is not logged in -->
+      <ng-template #loggedOut>
+        <a routerLink="/login">Login</a> |
+        <a routerLink="/signup">Sign Up</a>
+      </ng-template>
+    </nav>
+  </header>
+
+  <main>  
+  <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>&copy; {{ getCurrentYear() }} Serenade</p>
+  </footer>
+</div>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerenadeBackend", "backend-asp.netCore\SerenadeBackend.csproj", "{80E34F21-21E8-4DFB-A55A-281A85080BEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80E34F21-21E8-4DFB-A55A-281A85080BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E34F21-21E8-4DFB-A55A-281A85080BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E34F21-21E8-4DFB-A55A-281A85080BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E34F21-21E8-4DFB-A55A-281A85080BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4527D7E6-5ABC-4F84-9FD1-A0176A5E15ED}
+	EndGlobalSection
+EndGlobal

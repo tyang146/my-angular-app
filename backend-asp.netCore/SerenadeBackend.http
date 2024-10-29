@@ -1,0 +1,5 @@
+@SerenadeBackend_HostAddress = http://localhost:5000
+
+GET {{YourProjectName_HostAddress}}/composers
+Accept: application/json
+###

@@ -1,0 +1,53 @@
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" placeholder="Search for composers..." [(ngModel)]="searchTerm" class="search-bar" (input)="applySearch()" />
+  <button (click)="searchTerm = ''; applySearch()" class="clear-search">Clear</button>
+</div>
+
+<!-- SQL-like table -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Film</th>
+      <th>Year</th>
+      <th *ngIf="user">Favorites</th> <!-- Show this column only if user is logged in -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let composer of paginatedFilteredComposers">
+      <td>{{ composer.id }}</td>
+      <td>{{ composer.name }}</td>
+      <td>{{ composer.film }}</td>
+      <td>{{ composer.year }}</td>
+      <td *ngIf="user">
+        <button (click)="toggleFavorite(composer)">
+          {{ isFavorite(composer) ? 'Remove from Favorites' : 'Add to Favorites' }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div class="pagination-controls">
+  <!-- Previous Page Button -->
+  <button (click)="previousPage()" 
+          [disabled]="currentPage === 1" 
+          class="pagination-button" 
+          aria-label="Previous Page">
+    Previous Page
+  </button>
+
+  <!-- Display current page number -->
+  <span class="page-number">Page {{ currentPage }}</span>
+  
+  <!-- Next Page Button -->
+  <button (click)="nextPage()" 
+          [disabled]="currentPage * pageSize >= filteredComposersList.length" 
+          class="pagination-button" 
+          aria-label="Next Page">
+    Next Page
+  </button>
+</div>

@@ -1,0 +1,10 @@
+<h2>Your Favorite Composers</h2>
+
+<p *ngIf="favoriteComposersID.size === 0; else showList">
+  You have no favorite composers.
+</p>
+
+<ng-template #showList>
+  <app-composers-list></app-composers-list>
+</ng-template>
+
