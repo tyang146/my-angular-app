@@ -1,5 +1,5 @@
 ## Serenade
-
+https://serenade-ba82f.web.app/
 ## Overview
 This repository hosts my Angular application, containing a library of film composers, and allow individual user to mark film composers as their favorites.
 
@@ -22,7 +22,6 @@ This repository hosts my Angular application, containing a library of film compo
 - SQL Server
 - Firebase
 - ASP.NET Core
-- Docker
 
 ## Getting Started
 1. Prerequisites:
