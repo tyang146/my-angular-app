@@ -22,7 +22,3 @@ This repository hosts my Angular application, containing a library of film compo
 - SQL Server
 - Firebase
 - ASP.NET Core
-
-## Getting Started
-1. Prerequisites:
-   - SQL Server
