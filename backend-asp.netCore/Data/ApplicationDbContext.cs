@@ -9,6 +9,6 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        SeedDataServices.SeedData(modelBuilder);
+        //SeedDataServices.SeedData(modelBuilder);
     }
 }
