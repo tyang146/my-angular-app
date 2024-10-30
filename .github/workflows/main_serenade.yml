@@ -14,9 +14,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
+          include-prerelease: true
 
       - name: Navigate to backend and update appsettings.json with Connection String
         run: |
@@ -31,11 +32,11 @@ jobs:
         working-directory: ./backend-asp.netCore
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
         working-directory: ./backend-asp.netCore
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
@@ -44,20 +45,20 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: .net-app
-      
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'serenade'
-          slot-name: 'production'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6E293BAFF7424CADBF6BB15BB386E45B }}
           package: .
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
