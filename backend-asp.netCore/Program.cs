@@ -22,7 +22,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseCors("AllowSpecificOrigin");
-app.Urls.Add("http://0.0.0.0:5000"); // set the port to 5000
+//app.Urls.Add("http://0.0.0.0:5000"); // set the port to 5000
 app.MapGet("/", () =>
 {
     return "Welcome to the API!"; 
