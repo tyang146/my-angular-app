@@ -19,6 +19,7 @@ This repository hosts my Angular application, containing a library of film compo
 - TypeScript
 - HTML
 - CSS
-- SQL Server
+- SQL Server / Azure SQL
 - Firebase
 - ASP.NET Core
+- Azure App Service
