@@ -1,11 +1,19 @@
 // Import required modules
 const express = require('express');
 const sql = require('mssql');
+const cors = require('cors');
 
 // Create an Express app, define a port, and use JSON middleware
 const app = express();
 const PORT = 3000;
 app.use(express.json()); 
+
+// Enable CORS
+app.use(cors({
+    origin: 'http://localhost:4200', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    credentials: true, // Allow credentials if needed
+}));
 
 // Database configuration. Replace with your own.
 const config = {
@@ -29,6 +37,17 @@ sql.connect(config, (err) => {
     console.log('Connected to the database');
 });
 
+// Utility function to transform object keys to lowercase
+function transformKeysToLowercase(obj) {
+    const newObj = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        newObj[key.toLowerCase()] = obj[key]; 
+      }
+    }
+    return newObj;
+  }
+
 // Basic route
 app.get('/', (req, res) => {
     res.send('Express server is running! Go to /composers to fetch all composers');
@@ -40,8 +59,11 @@ app.get('/composers', async (req, res) => {
         // Query the database
         const result = await sql.query('SELECT * FROM Composers');
 
-        // Return the result
-        res.status(200).json(result.recordset);
+        // Transform all keys to lowercase keys
+        const transformedComposers = result.recordset.map((composer) => transformKeysToLowercase(composer));
+
+        // Send the transformed data as the response
+        res.json(transformedComposers);
     } catch (error) {
         // Handle errors
         console.error('Error fetching composers:', error);
