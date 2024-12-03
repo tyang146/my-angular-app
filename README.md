@@ -10,9 +10,8 @@ This repository hosts my Angular application, containing a library of film compo
 - Firebase Authentication
 - Search
 - Pagination
-- Favorites
-- API
-- Local storage
+- Favorites (local storage)
+- My own film composer API
 
 ## Technologies Used
 - Angular
