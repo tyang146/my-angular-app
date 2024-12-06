@@ -5,6 +5,7 @@ import { ComposersListComponentServices } from './composers-list.component.servi
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
+// Interface for a composer (could be abstracted)
 interface Composer {
   id: number;
   name: string;
@@ -21,6 +22,7 @@ interface Composer {
 })
 
 export class ComposersListComponent {
+  // Properties
   searchTerm: string = '';
   composers: Composer[] = [];
   filteredComposersList: Composer[] = [];
@@ -39,11 +41,14 @@ export class ComposersListComponent {
     { id: 5, name: 'James Horner', film: 'Avatar', year: 2009 },
   ];
 
+  // Constructor
   constructor(
     private composersService: ComposersListComponentServices,
     private auth: Auth,
   ) {}
 
+  // Methods
+  // On initialization
   ngOnInit() {
     // Subscribe to authentication state
     onAuthStateChanged(this.auth, (user) => {
@@ -66,7 +71,8 @@ export class ComposersListComponent {
         this.loadFavorites(this.composers);
         this.applySearch();
       })
-    } else {
+    } 
+    else {
       this.composersService.composers$.subscribe((composers) => {
         this.composers = composers.length ? composers : this.fallbackComposers;
         this.applySearch();
@@ -78,6 +84,7 @@ export class ComposersListComponent {
     this.composersService.loadAllComposers()
   }
 
+  // Favorites
   loadFavorites(composers: Composer[]) { 
     const favoriteIds = this.favoriteComposersID; 
     this.composers = []; 
@@ -89,34 +96,7 @@ export class ComposersListComponent {
       }
     }
   }
-
-  applySearch() {
-    this.filteredComposersList = this.composers.filter((composer) =>
-      composer.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      (composer.film && composer.film.toLowerCase().includes(this.searchTerm.toLowerCase()))
-    );
-    this.currentPage = 1;
-  }
-
-  get paginatedFilteredComposers(): Composer[] {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    return this.filteredComposersList.slice(startIndex, startIndex + this.pageSize);
-  }
-
-  nextPage() {
-    if (this.currentPage * this.pageSize < this.filteredComposersList.length) {
-      this.currentPage++;
-    }
-  }
-
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
-
-  // save favorite composers to local storage for now
-  toggleFavorite(composer: Composer) {
+  toggleFavorite(composer: Composer) {   // save favorite composers to local storage for now
     if (this.favoriteComposersID.has(composer.id)) {
       this.favoriteComposersID.delete(composer.id);
       localStorage.setItem(`favoriteComposersID${this.user?.email}`, JSON.stringify(Array.from(this.favoriteComposersID))); 
@@ -125,8 +105,32 @@ export class ComposersListComponent {
       localStorage.setItem(`favoriteComposersID${this.user?.email}`, JSON.stringify(Array.from(this.favoriteComposersID))); 
     }  
   }
-
   isFavorite(composer: Composer): boolean {
     return this.favoriteComposersID.has(composer.id); 
+  }
+
+  // Search
+  applySearch() {
+    this.filteredComposersList = this.composers.filter((composer) =>
+      composer.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      (composer.film && composer.film.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    );
+    this.currentPage = 1;
+  }
+
+  // Pagination
+  get paginatedFilteredComposers(): Composer[] { // getter method (making it a property)
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.filteredComposersList.slice(startIndex, startIndex + this.pageSize);
+  }
+  nextPage() {
+    if (this.currentPage * this.pageSize < this.filteredComposersList.length) {
+      this.currentPage++;
+    }
+  }
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
 }

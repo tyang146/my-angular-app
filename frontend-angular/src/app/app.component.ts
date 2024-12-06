@@ -19,7 +19,7 @@ export class AppComponent {
       this.user = user;
     });
 
-    // Check if localStorage is available and clear it
+    // Clear local storage on initialization
     // if (typeof window !== 'undefined' && window.localStorage) {
     //   localStorage.clear();
     // }

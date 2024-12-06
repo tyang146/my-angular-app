@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:4200', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    credentials: true, // Allow credentials if needed
+    credentials: true, // Allow credentials (e.g., cookies)
 }));
 
 // Database configuration. Replace with your own.

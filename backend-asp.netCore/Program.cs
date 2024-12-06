@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
                           .AllowAnyHeader());
 });
 
-// Configure Entity Framework
+// Configure DB context
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
@@ -22,10 +22,10 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseCors("AllowSpecificOrigin");
-//app.Urls.Add("http://0.0.0.0:5000"); // set the port to 5000
+// Beginning endpoint
 app.MapGet("/", () =>
 {
-    return "Welcome to the API!"; 
+    return "Welcome to the API! Go to /composers to fetch all composers"; 
 });
 
 app.MapControllers();

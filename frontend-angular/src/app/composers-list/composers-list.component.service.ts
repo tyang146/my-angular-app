@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ComposersListComponentServices {
+  // Subject to hold the list of composers
   private composersSubject = new BehaviorSubject<any[]>([]);
   composers$ = this.composersSubject.asObservable();
-
+  // Subject to hold the total number of composers
   private totalItemsSubject = new BehaviorSubject<number>(0);
   totalItems$ = this.totalItemsSubject.asObservable();
-
+  // constructor
   constructor(private http: HttpClient) {}
-
   // Load all composers into a subject
   async loadAllComposers() {
     try {
@@ -26,13 +27,12 @@ export class ComposersListComponentServices {
       this.totalItemsSubject.next(0); 
     }
   }
-  
   // Fetch all composers from the database
   fetchAllComposers(): Observable<any> {
-    return this.http.get<any[]>('http://localhost:5000/composers');
+    return this.http.get<any[]>(environment.apiURL);
   }
   
-  // Fetch composers from the database
+  // Fetch composers from the database with pagination
   // fetchComposers(page: number = 1, pageSize: number = 10): Observable<any> {
   //   this.loadingSubject.next(true); // Start loading
   //   const options = {

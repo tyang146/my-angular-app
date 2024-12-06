@@ -17,12 +17,10 @@ export class SignupComponent {
   password: string = '';
   auth: Auth = inject(Auth);
   router = inject(Router);
-  // successMessage: string = '';
   errorMessage: string = '';
 
   // signup method using Firebase Authentication
   async signup() {
-    // this.successMessage = '';  
     this.errorMessage = '';    
     try {
       await createUserWithEmailAndPassword(this.auth, this.email, this.password);
