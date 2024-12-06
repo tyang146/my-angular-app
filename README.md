@@ -24,3 +24,6 @@ This repository hosts my Angular application, containing a library of film compo
 - Firebase
 - ASP.NET Core
 - Azure App Service
+
+## Getting Started Locally 
+
