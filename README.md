@@ -25,5 +25,15 @@ This repository hosts my Angular application, containing a library of film compo
 - ASP.NET Core
 - Azure App Service
 
-## Getting Started Locally 
+## Getting Started Locally
+1. Prerequisites:
+   - Firebase Admin SDK and Firebase Auth
+   - My API or SQL Server
+2. Clone repo
+3. Add your Firebase Admin SDK inside of FirebaseAdminSDK.json file
+4. Run the following
+```bash
+docker-compose up
+```
+5. App should be running on http://localhost:8080/
 
