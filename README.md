@@ -27,11 +27,13 @@ This repository hosts my Angular application, containing a library of film compo
 
 ## Getting Started Locally
 1. Prerequisites:
+   - Node.js and npm
    - Firebase Config and Firebase Auth
    - My API or SQL Server
 2. Clone repo
 3. Add your Firebase Config inside of environment.ts file
-4. Run the following
+4. Run the development server
 ```bash
-docker-compose up
+npm install
+ng serve
 ```
