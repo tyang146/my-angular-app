@@ -35,5 +35,3 @@ This repository hosts my Angular application, containing a library of film compo
 ```bash
 docker-compose up
 ```
-5. App should be running on http://localhost:8080/
-
