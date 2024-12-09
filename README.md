@@ -1,7 +1,7 @@
 ## Serenade
-https://serenade-ba82f.web.app/
+App: https://serenade-ba82f.web.app/
 
-https://serenade-dsf7e5cwb0cke3gk.canadacentral-01.azurewebsites.net/composers
+API (slow. might have to refresh): https://serenade-dsf7e5cwb0cke3gk.canadacentral-01.azurewebsites.net/composers
 ## Overview
 This repository hosts my Angular application, containing a library of film composers, and allow individual user to mark film composers as their favorites.
 
